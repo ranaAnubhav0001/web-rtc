@@ -17,12 +17,15 @@ const Navigation = () => {
     };
 
     return (
-        <nav className={`${styles.navbar} container`}>
-            <Link style={brandStyle} to="/">
-                <img src="/images/logo.png" alt="logo" />
-                <span style={logoText}>Coder's House</span>
-            </Link>
-        </nav>
+        <>
+
+            <nav className={`${styles.navbar} container`}>
+                <Link style={brandStyle} to="/">
+                    <img src="/images/logo.png" alt="logo" />
+                    <span style={logoText}>Coder's House</span>
+                </Link>
+            </nav>
+        </>
     );
 };
 

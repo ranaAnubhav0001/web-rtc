@@ -6,21 +6,21 @@ import Button from '../../components/Button/Button';
 import Navigation from '../../components/Navigation/Navigation'
 
 const Home = () => {
-    const signInLinkStyle = {
-        color: '#0077ff',
-        fontWeight: 'bold',
-        textDecoration: 'none',
-        marginLeft: '10px',
-    };
+    // const signInLinkStyle = {
+    //     color: '#0077ff',
+    //     fontWeight: 'bold',
+    //     textDecoration: 'none',
+    //     marginLeft: '10px',
+    // };
     const navigate = useNavigate()
 
     function startRegister() {
         console.log('button clicked...');
-       navigate('/register');
+       navigate('/authenticate');
     }
     return (
       <>
-       <Navigation/>
+       {/* <Navigation/> */}
         <div className={styles.cardWrapper}>
             <Card title="Welcome to Codershouse!" icon="logo">
                 <p className={styles.text}>
@@ -29,16 +29,16 @@ const Home = () => {
                     gradually to make sure nothing breaks
                 </p>
                 <div>
-                    <Button onClick={startRegister} text="Get your username" />
+                    <Button onClick={startRegister} text="Let's Go" />
                 </div>
-                <div className={styles.signinWrapper}>
+                {/* <div className={styles.signinWrapper}>
                     <span className={styles.hasInvite}>
                         Have an invite text?
                     </span>
                     <Link style={signInLinkStyle} to="/login">
                         Sign in
                     </Link>
-                </div>
+                </div> */}
             </Card>
         </div>
         </>
