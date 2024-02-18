@@ -7,8 +7,8 @@ const onNextSlice = createSlice({
         step: 1,
     },
     reducers: {
-        setStep (state) {
-            state.step += 1;
+        setStep(state, action) {
+            state.step = action.payload
         },
     }
 })
