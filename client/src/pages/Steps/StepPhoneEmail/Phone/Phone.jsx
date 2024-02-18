@@ -3,20 +3,21 @@ import Card from '../../../../components/Card/Card';
 import Button from '../../../../components/Button/Button';
 import TextInput from '../../../../components/TextInput/TextInput';
 import styles from '../StepPhoneEmail.module.css';
-// import { sendOtp } from '../../../../http/index';
-// import { useDispatch } from 'react-redux';
-// import { setOtp } from '../../../../store/authSlice';
+import { useDispatch } from 'react-redux';
+import { sendOtp } from '../../../../apiCalls/otp';
+import { setOtp } from '../../../../redux/authSlice';
+
 
 const Phone = ({ onNext }) => {
     const [phoneNumber, setPhoneNumber] = useState('');
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-    // async function submit() {
-    //     const { data } = await sendOtp({ phone: phoneNumber });
-    //     console.log(data);
-    //     dispatch(setOtp({ phone: data.phone, hash: data.hash }));
-    //     onNext();
-    // }
+    async function onSubmit() {
+        const res = await sendOtp({ phone: phoneNumber });
+        console.log(res, "data isme hai");
+        dispatch(setOtp({ phone: res.phone, hash: res.hash }));
+        onNext();
+    }
 
     return (
         <Card title="Enter you phone number" icon="phone">
@@ -26,8 +27,8 @@ const Phone = ({ onNext }) => {
             />
             <div>
                 <div className={styles.actionButtonWrap}>
-                    {/* <Button text="Next" onClick={submit} /> */}
-                    <Button text="Next" onClick={onNext} />
+                    <Button text="Next" onClick={onSubmit} />
+                    {/* <Button text="Next" onClick={onNext} /> */}
                 </div>
                 <p className={styles.bottomParagraph}>
                     By entering your number, you’re agreeing to our Terms of

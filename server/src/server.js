@@ -1,6 +1,11 @@
 import dotenv from 'dotenv';
 import app from "./app.js";
 import OtpRouter from './routes/OtpRoute.js'
+import cors from 'cors';
+
+//CORS CONFIG
+app.use(cors())
+
 //DB CONFIG
 import DbConfig from './db/dbConfig.js';
 

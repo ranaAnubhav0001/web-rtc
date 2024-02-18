@@ -1,16 +1,15 @@
 import React from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
+import { useSelector } from 'react-redux';
+
 
 function SemiPrivateRoutes() {
-    let auth = false
-    const user = {
-        activated: false,
-    }
+    const { isAuth, user } = useSelector((state) => state.authSlice);
     return (
-        !auth ? (
+        !isAuth ? (
             <Navigate to='/' />
         ) : (
-            auth && !user.activated ? <Outlet /> : <Navigate to='/rooms' />
+            isAuth && !user.activated ? <Outlet /> : <Navigate to='/rooms' />
         )
     )
 }

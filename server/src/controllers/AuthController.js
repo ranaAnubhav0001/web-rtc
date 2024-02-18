@@ -2,6 +2,7 @@ import OtpService from "../services/Otp-Service.js";
 import HashService from "../services/Hash-Service.js";
 import UserService from "../services/User-Service.js";
 import TokenService from "../services/Token-Service.js";
+// import UserDto from '../dtos/user-dtos.js'  isme custom data bhej skte hai modify krke --for more check dtos folder
 
 
 const AuthController = {
@@ -85,7 +86,9 @@ const AuthController = {
             maxAge: 1000 * 60 * 60 * 24 * 30,
             httpOnly: true,
         });
-        res.json({ accessToken })
+
+        // const userDto = new UserDto(user);
+        res.json({ accessToken , user})
 
 
 

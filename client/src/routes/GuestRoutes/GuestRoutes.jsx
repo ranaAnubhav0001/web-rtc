@@ -1,9 +1,11 @@
+import { useSelector } from 'react-redux';
 import { Outlet, Navigate } from 'react-router-dom'
 
 const GuestRoutes = () => {
-    let auth = false
+    const { isAuth } = useSelector((state) => state.authSlice);
+    
     return (
-        auth ? <Navigate to='/rooms' /> : <Outlet />
+        isAuth ? <Navigate to='/rooms' /> : <Outlet />
     )
 }
 
