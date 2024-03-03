@@ -14,7 +14,6 @@ const AuthController = {
             res.status(400).json({ message: 'Phone Field is required!' })
         }
 
-
         //GENERATE OTP
         const otp = await OtpService.generateOtp()
 
@@ -68,27 +67,39 @@ const AuthController = {
             res.status(400).json({ message: "Invalid OTP" })
         }
 
+        
         let user;
-        // let accessToken;
         try {
             user = await UserService.findUser({ phone })
             if (!user) {
                 user = await UserService.createUser({ phone })
             }
         } catch (error) {
+            ``
             console.log(err, ":- Error");
             res.status(500).json({ message: "DB Error!!!" });
         }
 
         //GENERATE JWT TOKEN
         const { accessToken, refreshToken } = TokenService.generateTokens({ _id: user._id, activated: false });
+
+        //STORING REFRESHTOKEN TO DATABASE
+        await TokenService.storeRefreshToken(refreshToken, user._id)
+
+        //SETING COOKIES TO REFRESH TOKEN
         res.cookie('refreshToken', refreshToken, {
             maxAge: 1000 * 60 * 60 * 24 * 30,
             httpOnly: true,
         });
 
+        //SETING COOKIES TO ACCESS TOKEN
+        res.cookie('accessToken', accessToken, {
+            maxAge: 1000 * 60 * 60 * 24 * 30,
+            httpOnly: true,
+        });
+
         // const userDto = new UserDto(user);
-        res.json({ accessToken , user})
+        res.json({ auth:true, user })
 
 
 

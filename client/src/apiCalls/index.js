@@ -8,6 +8,7 @@ export const apiRequest = async (method, url, data) => {
     try {
         const response = await axios({
             method,
+            withCredentials: true,
             url: `${baseUrl}/${url}`,
             data: data,
             headers: {

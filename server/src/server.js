@@ -4,7 +4,11 @@ import OtpRouter from './routes/OtpRoute.js'
 import cors from 'cors';
 
 //CORS CONFIG
-app.use(cors())
+const corsOption = {
+    origin: 'http://localhost:5173',
+    credentials: true,
+}
+app.use(cors(corsOption))
 
 //DB CONFIG
 import DbConfig from './db/dbConfig.js';
